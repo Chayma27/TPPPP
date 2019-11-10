@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<body>
+<p> Cliquer sur le bouton pour récupérer les cordonnnées géographique </p>
+<button onclick="getLocation()">Essayez-Le !</button>
+<p id="Demonstration"></p>
+<script>
+	var p = document.getElementById("Demonstration");
+	//Nous définisson la fonction que nous avons appelée au haut
+	//Cette fonction récupère les cordonnées géographiques
+	function getLocation() {
+		if (navigator.geolocation) {
+			//La méthode getCurrentPosition du Modèle (DOM) du navigateur
+			navigator.geolocation.getCurrentPosition(showPosition,showError);
+		} else {
+			//en Cas d'erreur
+			p.innerHTML ="Geolocation n'est pas supporté par ce navigateur !";
+		}
+	}
+	//La fonction d'affichage
+	function showPosition(position) {
+		//Nous écrivons au niveau du paragraphe "demonstartion"
+		p.innerHTML = "Votre latitude : " + position.coords.latitude + "<br> Votre longitude : " + position.coords.longitude;
+	}
+	function showError (error) {
+		switch (error.code){
+			case error.PERMISSION_DENIED:
+			x.innerHTML ="L'utilisateur a rejeté la requête pour la géolocalisation"
+			break;
+			case error.POSITION_UNVAILABLE:
+			x.innerHTML ="Les informations de localisation ne sont pas disponible"
+			break;
+			case error.TIMEOUT:
+			x.innerHTML ="Temps de traitement de la requête est dépassé"
+			break;
+			case error.UNKHOWN_ERROR:
+			x.innerHTML ="Une erreur inconnue est survenue"
+			break;
+		}
+	}
+</script>
+</body>
+</html>

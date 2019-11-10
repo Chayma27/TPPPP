@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Mon 1er Tp</title>
+</head>
+<body>
+<div id="infoposition"></div>
+<div id="map"> </div>
+<script>
+    var inf = document.getElementById("infoposition");
+	//Nous définisson la fonction que nous avons appelée au haut
+	//Cette fonction récupère les cordonnées géographiques
+		
+		//La fonction d'affichage
+	function showPosition(position) {
+		//Nous écrivons au niveau du paragraphe "demo"
+		
+var tatlon = position.coords.latitude +"," + position.coords.longitude;
+        var img_url="http://maps.googleapis.com/maps/api/staticmap?center="+tatlon+"&zoom=14&size=400*300&key=AIzaSyBu-<16DdpKAjTmJNIgngS6HL_kDIKU0aU";
+           document.getElementById(map).innerHTML="<img src='"+img_url+"'>";
+            		}
+
+		var survId = navigator.geolocation.getCurrentPosition(showPosition);
+
+	function showError (error) {
+		switch (error.code){
+			case error.PERMISSION_DENIED:
+			x.innerHTML ="L'utilisateur a rejeté la requête pour la géolocalisation"
+			break;
+			case error.POSITION_UNVAILABLE:
+			x.innerHTML ="Les informations de localisation ne sont pas disponible"
+			break;
+			case error.TIMEOUT:
+			x.innerHTML ="Temps de traitement de la requête est dépassé"
+			break;
+			case error.UNKHOWN_ERROR:
+			x.innerHTML ="Une erreur inconnue est survenue"
+			break;
+		}
+	document.getElementById("infoposition").innerHTML=infoposition;
+	}
+</script>
+</body>
+</html>

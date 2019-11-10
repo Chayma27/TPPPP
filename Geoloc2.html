@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8">
+	<title>HTML5 : Géolocalisation</title>
+</head>
+<body>
+<!-- Un élement HTML recueillir l'affichage -->
+<button onclick="suivi()"> Marche </button>
+<button onclick="Arret()"> Marche </button>
+<div id="infoposition"></div>
+<script>
+	var inf = document.getElementById("");
+	//Fonction de callback en cas de succès
+	function surveillePosition(position) {
+		var infopos = "Position déterminée :\n";
+		infopos += "Latitude : "+position.coords.latitude +"<br>";
+		infopos += "Longitude : "+position.coords.longitude +"<br>";
+		infopos += "Altitude : "+position.coords.altitude +"<br>";
+		infopos += "Vitesse : "+position.coords.speed +"<br>";
+		document.getElementById("infoposition").innerHTML =infopos;
+	}
+	//On déclare la variable survId afin de pouvoir par la suite annuler le suivi de la position
+	var survId = navigator.geolocation.watchPosition(surveillePosition);
+    if(navigator.geolocation)
+    navigator.geolocation.getCurrentPosition(maPosition);
+</script>
+</body>
+</html>
